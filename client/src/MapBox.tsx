@@ -7,6 +7,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { useEffect, useState } from "react";
 
 import { ACCESS_TOKEN } from "./private/api";
+import "./MapBox.css";
 
 interface LatLong {
   lat: number;
@@ -16,12 +17,14 @@ interface LatLong {
 export default function MapBox() {
   const ProvidenceLatLong: LatLong = { lat: 41.824, long: -71.4128 };
   const initialZoom = 20;
+  const [isLoading, setIsLoading] = useState(true);
 
   const [userState, setUserState] = useState({
     longitude: ProvidenceLatLong.long,
     latitude: ProvidenceLatLong.lat,
     zoom: initialZoom,
   });
+
   const [viewState, setViewState] = useState({
     longitude: ProvidenceLatLong.long,
     latitude: ProvidenceLatLong.lat,
@@ -34,6 +37,7 @@ export default function MapBox() {
   }
 
   useEffect(() => {
+    console.log(isLoading);
     navigator.geolocation.getCurrentPosition((position) => {
       setUserState({
         latitude: position.coords.latitude,
@@ -45,12 +49,19 @@ export default function MapBox() {
         longitude: position.coords.longitude,
         zoom: initialZoom,
       });
+      setIsLoading(false);
     });
+    console.log(isLoading);
     console.log(viewState);
   }, []);
 
   return (
     <>
+      {isLoading && (
+        <div className="loading-screen">
+          <img className="loading-gif" src="/loading.gif" />
+        </div>
+      )}
       <Map
         mapboxAccessToken={ACCESS_TOKEN}
         {...viewState}
