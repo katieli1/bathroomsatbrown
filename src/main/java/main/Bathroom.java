@@ -1,6 +1,9 @@
 package main;
 
+import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
+
 import org.springframework.data.annotation.Id;
 
 public class Bathroom {
@@ -18,4 +21,21 @@ public class Bathroom {
   private double avgSizeRating;
   double latitude;
   double longitude;
+
+  /** a no argument constructor so that Jackson can deserialize the json */
+
+  public Bathroom(){
+    this.id = UUID.randomUUID().toString();
+    this.reviews = new HashSet<>();
+    this.photos = new HashSet<>();
+  }
+  public String getId(){
+    return this.id;
+  }
+
+  public void setId(String id){
+    this.id = id;
+  }
+
+
 }
