@@ -12,6 +12,8 @@ interface LatLong {
   long: number;
 }
 
+//wahahaha
+
 export default function MapBox() {
   const ProvidenceLatLong: LatLong = { lat: 41.824, long: -71.4128 };
   const initialZoom = 10;
