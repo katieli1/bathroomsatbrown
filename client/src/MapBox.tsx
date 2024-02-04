@@ -15,8 +15,6 @@ interface LatLong {
   long: number;
 }
 
-//work for jackie!!
-
 export default function MapBox() {
   const ProvidenceLatLong: LatLong = { lat: 41.824, long: -71.4128 };
   const initialZoom = 19;
@@ -66,38 +64,38 @@ export default function MapBox() {
           <img className="loading-gif" src="/loading.gif" />
         </div>
       )}
-      <div style={{ width: "100%", height: "100%" }}>
-        <Map
-          mapboxAccessToken={ACCESS_TOKEN}
-          {...viewState}
-          longitude={viewState.longitude}
-          latitude={viewState.latitude}
-          zoom={viewState.zoom}
-          onMove={(ev: ViewStateChangeEvent) => setViewState(ev.viewState)}
-          style={{
-            width: "100vw",
-            height: "100vh",
-          }}
-          mapStyle={"mapbox://styles/awang1245/cls6taqyd02fz01p5d4qpdrhr"}
-          onClick={onMapClick}
-          pitch={70}
-        >
-          {userState && (
-            <Marker
-              latitude={userState.latitude}
-              longitude={userState.longitude}
-            >
-              <img src="astronaut-svgrepo-com.svg" style={{ width: "50px" }} />
-            </Marker>
-          )}
-          <Marker latitude={41.830511343740945} longitude={-71.40235994080952}>
-            <img src="map-pin.svg" style={{ width: "50px" }} />
-          </Marker>
-          <Marker latitude={41.82617359064272} longitude={-71.4026516714208}>
-            <img src="map-pin.svg" style={{ width: "50px" }} />
-          </Marker>
-        </Map>
+      <div className="side-bar">
+        <h1 className="title">Bathrooms at Brown</h1>
       </div>
+      <Map
+        mapboxAccessToken={ACCESS_TOKEN}
+        {...viewState}
+        longitude={viewState.longitude}
+        latitude={viewState.latitude}
+        zoom={viewState.zoom}
+        onMove={(ev: ViewStateChangeEvent) => setViewState(ev.viewState)}
+        style={{
+          marginLeft: 450,
+          width: "100vw - 450px",
+          height: "100vh",
+        }}
+        mapStyle={"mapbox://styles/awang1245/cls6taqyd02fz01p5d4qpdrhr"}
+        onClick={onMapClick}
+        pitch={50}
+        minZoom={14}
+      >
+        {userState && (
+          <Marker latitude={userState.latitude} longitude={userState.longitude}>
+            <img src="astronaut-svgrepo-com.svg" style={{ width: "60px" }} />
+          </Marker>
+        )}
+        <Marker latitude={41.830511343740945} longitude={-71.40235994080952}>
+          <img src="map-pin.svg" style={{ width: "50px" }} />
+        </Marker>
+        <Marker latitude={41.82617359064272} longitude={-71.4026516714208}>
+          <img src="map-pin.svg" style={{ width: "50px" }} />
+        </Marker>
+      </Map>
     </>
   );
 }

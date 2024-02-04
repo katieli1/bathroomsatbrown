@@ -1,0 +1,17 @@
+.App {
+  /* text-align: center; */
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.Map {
+  height: 100vh;
+  width: 100vw; /* Make the Map component occupy 50% of the available space */
+  background-color: #f0f0f0; /* Set the background color if needed */
+  /* You can adjust the styling as needed */
+}
+
+html {
+  height: 100%;
+}

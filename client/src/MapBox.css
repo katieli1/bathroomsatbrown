@@ -14,3 +14,20 @@
 .loading-gif {
   width: 14vw;
 }
+
+.side-bar {
+  width: 450px;
+  height: 100vh;
+  background-color: white;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  padding: 30px;
+}
+
+.title {
+  font-family: "orbitron", sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: #1a1c5f;
+}
