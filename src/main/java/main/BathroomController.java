@@ -19,6 +19,7 @@ public class BathroomController {
 
   @GetMapping("/")
   public CompletableFuture<ResponseEntity<List<Bathroom>>> getAllBathrooms() {
+    System.out.println("hello");
     return this.bathroomService.getBathrooms()
             .thenApply(ResponseEntity::ok)
             .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
