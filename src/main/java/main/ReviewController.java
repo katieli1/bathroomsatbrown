@@ -24,8 +24,8 @@ public class ReviewController {
     }
 
     @PostMapping(value = "/create")
-    public CompletableFuture<ServiceResponse<Review>> create(@RequestBody Review review) {
-        this.reviewService.createReview(review);
+    public CompletableFuture<ServiceResponse<Review>> create(@RequestBody Review review, @PathVariable String bathroomId) {
+        this.reviewService.createReview(review, bathroomId);
         return CompletableFuture.completedFuture(
                 new ServiceResponse<Review>(review, "saved review"));
     }
