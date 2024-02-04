@@ -81,6 +81,7 @@ export default function BathroomModal({ onClose, photoId }) {
       {isLoading && (
         <div className="loading-screen">
           <img className="loading-gif" src="/loading.gif" />
+          <img className="stars" src="/stars.png" />
         </div>
       )}
       <Modal closeOnOverlayClick={false} isOpen={true} onClose={onClose}>
@@ -90,9 +91,9 @@ export default function BathroomModal({ onClose, photoId }) {
             {isLoading && (
               <div className="loading-screen">
                 <img className="loading-gif" src="/loading.gif" />
+                <img className="stars" src="/stars.png" />
               </div>
             )}
-
             <ModalCloseButton
               className="close-button"
               onClick={onClose}

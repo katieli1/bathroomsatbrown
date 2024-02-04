@@ -1,8 +1,4 @@
-import Map, {
-  MapLayerMouseEvent,
-  ViewStateChangeEvent,
-  Marker,
-} from "react-map-gl";
+import Map, { ViewStateChangeEvent, Marker } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useEffect, useState } from "react";
 
@@ -43,8 +39,9 @@ const buildings: string[] = [
 
 export default function MapBox() {
   const ProvidenceLatLong: LatLong = { lat: 41.824, long: -71.4128 };
-  const initialZoom = 17;
+  const initialZoom = 14;
   const [isLoading, setIsLoading] = useState(true);
+  const [tags, setTags] = useState<Set<string>>(new Set());
   const [modalOpen, setModalOpen] = useState<{
     isOpen: boolean;
     markerId: number | null;
@@ -110,6 +107,24 @@ export default function MapBox() {
     //if filter list contains a building , set the class of that building to highlight
   };
 
+  const onClick = (tag: string, event) => {
+    onFilter(event);
+    // if in tags list, take out
+    setTags((prevTags) => {
+      // using functional form of setTags so that onClick is updating the actual latest state of tags; otherwise always a step behind
+      const updatedTags = new Set(prevTags); // Create a new set from the previous tags
+
+      if (updatedTags.has(tag)) {
+        updatedTags.delete(tag); // If the tag exists, remove it from the set
+      } else {
+        updatedTags.add(tag); // If the tag doesn't exist, add it to the set
+      }
+
+      console.log(updatedTags);
+      return updatedTags; // Return the updated set
+    });
+  };
+
   return (
     <>
       {modalOpen.isOpen && (
@@ -121,66 +136,81 @@ export default function MapBox() {
       {isLoading && (
         <div className="loading-screen">
           <img className="loading-gif" src="/loading.gif" />
+          <img className="stars" src="/stars.png" />
         </div>
       )}
       <div className="side-bar">
         <h1 className="title">Bathrooms@Brown</h1>
-        <Accordion defaultIndex={[0]} allowMultiple>
+        <Accordion defaultIndex={[0]} allowMultiple className="accordion">
           <AccordionItem className="accordion-item">
             <h2>
-              <AccordionButton>
+              <AccordionButton className="accordion-button">
                 <Box as="span" flex="1" textAlign="left">
                   All Buildings
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
             </h2>
-            <AccordionPanel pb={5} className="accordion-item">
+            <AccordionPanel pb={4}>
               <div className="button-grid">
-                {buildings.map((building, index) => (
-                  <button
-                    key={index}
-                    className="building-button"
-                    value={building}
-                    onClick={(e) =>
-                      onFilter((e.target as HTMLButtonElement).value)
-                    }
-                  >
-                    {building}
-                  </button>
-                ))}
+                {buildings.map((tag, index) => {
+                  const isSelected = tags.has(tag);
+                  const tagClass = isSelected
+                    ? "selected-building"
+                    : "building-button";
+
+                  return (
+                    <button
+                      key={index}
+                      className={tagClass}
+                      value={tag}
+                      onClick={(e) =>
+                        onClick(tag, (e.target as HTMLButtonElement).value)
+                      }
+                    >
+                      {tag}
+                    </button>
+                  );
+                })}
               </div>
             </AccordionPanel>
           </AccordionItem>
-          <AccordionItem>
+          <AccordionItem className="accordion-item">
             <h2>
-              <AccordionButton>
+              <AccordionButton className="accordion-button">
                 <Box as="span" flex="1" textAlign="left">
                   Gender
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
             </h2>
-            <AccordionPanel pb={5} className="accordion-item">
+            <AccordionPanel pb={4}>
               <div className="button-grid">
-                {["Male", "Female", "Gender Neutral"].map((gender, index) => (
-                  <button
-                    key={index}
-                    className="building-button"
-                    value={gender}
-                    onClick={(e) =>
-                      onFilter((e.target as HTMLButtonElement).value)
-                    }
-                  >
-                    {gender}
-                  </button>
-                ))}
+                {["Male", "Female", "Gender Neutral"].map((tag, index) => {
+                  const isSelected = tags.has(tag);
+                  const tagClass = isSelected
+                    ? "selected-building"
+                    : "building-button";
+
+                  return (
+                    <button
+                      key={index}
+                      className={tagClass}
+                      value={tag}
+                      onClick={(e) =>
+                        onClick(tag, (e.target as HTMLButtonElement).value)
+                      }
+                    >
+                      {tag}
+                    </button>
+                  );
+                })}
               </div>
             </AccordionPanel>
           </AccordionItem>
-          <AccordionItem>
+          <AccordionItem className="accordion-item">
             <h2>
-              <AccordionButton>
+              <AccordionButton className="accordion-button">
                 <Box as="span" flex="1" textAlign="left">
                   Other
                 </Box>
@@ -190,18 +220,25 @@ export default function MapBox() {
             <AccordionPanel pb={4}>
               <div className="button-grid">
                 {["Single Occupancy", "Wheelchair Accessible"].map(
-                  (option, index) => (
-                    <button
-                      key={index}
-                      className="building-button"
-                      value={option}
-                      onClick={(e) =>
-                        onFilter((e.target as HTMLButtonElement).value)
-                      }
-                    >
-                      {option}
-                    </button>
-                  )
+                  (tag, index) => {
+                    const isSelected = tags.has(tag);
+                    const tagClass = isSelected
+                      ? "selected-building"
+                      : "building-button";
+
+                    return (
+                      <button
+                        key={index}
+                        className={tagClass}
+                        value={tag}
+                        onClick={(e) =>
+                          onClick(tag, (e.target as HTMLButtonElement).value)
+                        }
+                      >
+                        {tag}
+                      </button>
+                    );
+                  }
                 )}
               </div>
             </AccordionPanel>
@@ -217,7 +254,8 @@ export default function MapBox() {
           zoom={viewState.zoom}
           onMove={(ev: ViewStateChangeEvent) => setViewState(ev.viewState)}
           style={{
-            width: "100vw",
+            marginLeft: 400,
+            width: "100vw - 400px",
             height: "100vh",
           }}
           mapStyle={"mapbox://styles/awang1245/cls6taqyd02fz01p5d4qpdrhr"}
