@@ -1,17 +1,11 @@
 import {
-  Box,
-  Button,
-  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  Select,
-  Textarea,
 } from "@chakra-ui/react";
-import "../styles/Modal.css";
 import { useState } from "react";
 
 export default function BathroomModal({ onClose }) {
@@ -47,21 +41,26 @@ export default function BathroomModal({ onClose }) {
                     flexDirection: "column",
                   }}
                 >
-                  <div className="building"></div>
-                  <div className="floor"></div>
-                  <div className="gender"></div>
-                  <div className="main-img"></div>
+                  <div className="building">Andrews</div>
+                  <div className="floor">1</div>
+                  <div className="gender">F</div>
+                  <div className="main-img">
+                    <img
+                      src="drive-download-20240204T020153Z-001/IMG_3891.JPG"
+                      alt=""
+                    />
+                  </div>
                   <div className="carosel" style={{ display: "flex" }}></div>
                 </div>
                 <div
                   className="reviews"
                   style={{ display: "flex", flexDirection: "column" }}
                 >
-                  <div className="stars"></div>
+                  <div className="stars">5</div>
                   <div className="review-list">
                     {/* map revew objects  */}
                     <div className="review">
-                      <p className="review-text"></p>
+                      <p className="review-text">a review</p>
                     </div>
                   </div>
                 </div>
