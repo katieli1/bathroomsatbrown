@@ -16,7 +16,7 @@ interface LatLong {
 
 export default function MapBox() {
   const ProvidenceLatLong: LatLong = { lat: 41.824, long: -71.4128 };
-  const initialZoom = 20;
+  const initialZoom = 19;
   const [isLoading, setIsLoading] = useState(true);
 
   const [userState, setUserState] = useState({
@@ -69,9 +69,13 @@ export default function MapBox() {
         latitude={viewState.latitude}
         zoom={viewState.zoom}
         onMove={(ev: ViewStateChangeEvent) => setViewState(ev.viewState)}
-        style={{ width: window.innerWidth, height: window.innerHeight }}
-        mapStyle={"mapbox://styles/mapbox/streets-v12"}
+        style={{
+          width: window.innerWidth + 50,
+          height: window.innerHeight + 50,
+        }}
+        mapStyle={"mapbox://styles/awang1245/cls6taqyd02fz01p5d4qpdrhr"}
         onClick={onMapClick}
+        pitch={70}
       >
         {userState && (
           <Marker latitude={userState.latitude} longitude={userState.longitude}>
