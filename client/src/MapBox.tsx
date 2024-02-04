@@ -87,12 +87,15 @@ export default function MapBox() {
               latitude={userState.latitude}
               longitude={userState.longitude}
             >
-              <img
-                src="astronaut-svgrepo-com.svg"
-                style={{ width: "100px" }}
-              ></img>
+              <img src="astronaut-svgrepo-com.svg" style={{ width: "50px" }} />
             </Marker>
           )}
+          <Marker latitude={41.830511343740945} longitude={-71.40235994080952}>
+            <img src="map-pin.svg" style={{ width: "50px" }} />
+          </Marker>
+          <Marker latitude={41.82617359064272} longitude={-71.4026516714208}>
+            <img src="map-pin.svg" style={{ width: "50px" }} />
+          </Marker>
         </Map>
       </div>
     </>
