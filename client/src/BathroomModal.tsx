@@ -58,49 +58,30 @@ export default function BathroomModal({ onClose, photoId }) {
 
   useEffect(() => {
     fetchBathrooms();
-    console.log(curBathroom)
+    console.log(curBathroom);
   }, []);
 
   // dict of id : dict of info for each marker so on click is specific
   const fetchBathrooms = async () => {
     setIsLoading(true);
 
-     const bathrooms = await fetch("http://localhost:8080/bathrooms/" + photoId);
-     if (bathrooms.ok) {
-      const bathroom =  await bathrooms.json()
-      console.log(bathroom)
+    const bathrooms = await fetch("http://localhost:8080/bathrooms/" + photoId);
+    if (bathrooms.ok) {
+      const bathroom = await bathrooms.json();
+      console.log(bathroom);
       setCurBathroom(bathroom.data);
- 
-     }
-    
+    }
+
     //setCurBathroom(testBathroom);
     setIsLoading(false);
   };
-
-  // const testBathroom: Bathroom = {
-  //   id: 2,
-  //   reviews: [
-  //     "this is the best bathroom on campus!!",
-  //     "sometimes the paper towels don't work, but otherwise it's ok",
-  //     "I've been drawing graffitti on the walls here since 1995",
-  //     "beware of the big stall, I've seen horrifying things in there...",
-  //   ],
-  //   building: "Andrews",
-  //   floor: 0,
-  //   roomNumber: "019a",
-  //   wheelchairAccessible: true,
-  //   gender: "N",
-  //   singleOccupancy: false,
-  //   avgOverallRating: 3.5,
-  //   avgCleanlinessRating: 4,
-  //   avgSizeRating: 2,
-  // };
 
   return (
     <>
       {isLoading && (
         <div className="loading-screen">
           <img className="loading-gif" src="/loading.gif" />
+          <img className="stars" src="/stars.png" />
         </div>
       )}
       <Modal closeOnOverlayClick={false} isOpen={true} onClose={onClose}>
@@ -110,9 +91,9 @@ export default function BathroomModal({ onClose, photoId }) {
             {isLoading && (
               <div className="loading-screen">
                 <img className="loading-gif" src="/loading.gif" />
+                <img className="stars" src="/stars.png" />
               </div>
             )}
-
             <ModalCloseButton
               className="close-button"
               onClick={onClose}
@@ -125,7 +106,7 @@ export default function BathroomModal({ onClose, photoId }) {
                     <div
                       className="info-container"
                       style={{
-                        width: "40%",
+                        width: "50%",
                         display: "flex",
                         flexDirection: "column",
                       }}
@@ -142,7 +123,15 @@ export default function BathroomModal({ onClose, photoId }) {
                         <div className="field-text">{curBathroom.gender}</div>
                       </div>
                       <div className="main-img">
-                        <img src={idToImage[curBathroom.id]} alt="" />
+                        <img
+                          src={idToImage[curBathroom.id]}
+                          alt=""
+                          style={{
+                            borderRadius: "10px",
+                            border: "3px",
+                            borderColor: "var(--dark-purple100)",
+                          }}
+                        />
                       </div>
                       <div
                         className="carosel"
@@ -156,20 +145,25 @@ export default function BathroomModal({ onClose, photoId }) {
                       <div className="info-row">
                         <div className="field-name">Overall</div>
                         <div className="field-text">
-                          {curBathroom.avgOverallRating}
+                          {curBathroom.avgOverallRating == -1
+                            ? "N/A"
+                            : curBathroom.avgOverallRating}
                         </div>
                       </div>
                       <div className="info-row">
                         <div className="field-name">Cleanliness</div>
                         <div className="field-text">
-                          {curBathroom.avgCleanlinessRating}
+                          {curBathroom.avgCleanlinessRating == -1
+                            ? "N/A"
+                            : curBathroom.avgCleanlinessRating}
                         </div>
                       </div>
                       <div className="info-row">
                         <div className="field-name">Size</div>
                         <div className="field-text">
-                          {" "}
-                          {curBathroom.avgSizeRating}
+                          {curBathroom.avgSizeRating == -1
+                            ? "N/A"
+                            : curBathroom.avgSizeRating}
                         </div>
                       </div>
 

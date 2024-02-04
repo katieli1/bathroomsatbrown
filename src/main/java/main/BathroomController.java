@@ -98,9 +98,9 @@ public class BathroomController {
         .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
   }
 
-  @GetMapping(value = "/getByBuilding")
+  @GetMapping(value = "/getByBuilding/{building}")
   public CompletableFuture<ResponseEntity<List<Bathroom>>> getByBuilding(
-      @RequestParam String building) {
+      @PathVariable String building) {
     return this.bathroomService
         .getBathrooms()
         .thenApply(

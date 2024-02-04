@@ -49,6 +49,7 @@ export default function MapBox() {
     isOpen: false,
     markerId: null,
   });
+  const [filter, setFilter] = useState<number[]>([]);
 
   const [userState, setUserState] = useState({
     longitude: ProvidenceLatLong.long,
@@ -87,7 +88,27 @@ export default function MapBox() {
     console.log(viewState);
   }, []);
 
-  const onClick = (tag: string) => {
+  const onFilter = async (filter: string) => {
+    //take in string
+    //add to list
+    const building = await fetch(
+      "http://localhost:8080/bathrooms/getByBuilding/" + filter
+    );
+    if (building.ok) {
+      const build = await building.json();
+      console.log(build);
+
+      const bs: number[] = [];
+      build.forEach((building) => {
+        bs.push(building.id);
+      });
+      setFilter(bs);
+    }
+    //if filter list contains a building , set the class of that building to highlight
+  };
+
+  const onClick = (tag: string, event) => {
+    onFilter(event);
     // if in tags list, take out
     setTags((prevTags) => {
       // using functional form of setTags so that onClick is updating the actual latest state of tags; otherwise always a step behind
@@ -115,6 +136,7 @@ export default function MapBox() {
       {isLoading && (
         <div className="loading-screen">
           <img className="loading-gif" src="/loading.gif" />
+          <img className="stars" src="/stars.png" />
         </div>
       )}
       <div className="side-bar">
@@ -141,7 +163,10 @@ export default function MapBox() {
                     <button
                       key={index}
                       className={tagClass}
-                      onClick={() => onClick(tag)}
+                      value={tag}
+                      onClick={(e) =>
+                        onClick(tag, (e.target as HTMLButtonElement).value)
+                      }
                     >
                       {tag}
                     </button>
@@ -171,7 +196,10 @@ export default function MapBox() {
                     <button
                       key={index}
                       className={tagClass}
-                      onClick={() => onClick(tag)}
+                      value={tag}
+                      onClick={(e) =>
+                        onClick(tag, (e.target as HTMLButtonElement).value)
+                      }
                     >
                       {tag}
                     </button>
@@ -202,7 +230,10 @@ export default function MapBox() {
                       <button
                         key={index}
                         className={tagClass}
-                        onClick={() => onClick(tag)}
+                        value={tag}
+                        onClick={(e) =>
+                          onClick(tag, (e.target as HTMLButtonElement).value)
+                        }
                       >
                         {tag}
                       </button>
