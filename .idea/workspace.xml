@@ -5,34 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="770b92e2-eaec-4ba5-a2ee-3bab46efd816" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/main/MediaConverterConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/main/ReviewRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/main/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/s0.iml" beforeDir="false" afterPath="$PROJECT_DIR$/s0.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Bathroom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Bathroom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/BathroomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/BathroomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/BathroomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/BathroomRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/BathroomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/BathroomService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Review.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/ReviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/ReviewService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/App.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/Bathroom.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/BathroomController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/BathroomRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/BathroomService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/Review.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/ReviewController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/ReviewService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/ServiceResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/s0-1.0-SNAPSHOT.jar" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,14 +44,14 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/jaclyncohen/Desktop/bathroomsatbrown",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "configurable.group.editor",
@@ -85,7 +60,9 @@
   }
 }]]></component>
   <component name="RunManager">
-    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="App" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="main.App" />
       <module name="s0" />
       <extension name="coverage">
@@ -136,6 +113,7 @@
       <workItem from="1707048814273" duration="1870000" />
       <workItem from="1707056786915" duration="281000" />
       <workItem from="1707057080414" duration="449000" />
+      <workItem from="1707058102758" duration="431000" />
     </task>
     <servers />
   </component>
