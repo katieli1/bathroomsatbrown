@@ -2,14 +2,11 @@ package main;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
-
 import org.springframework.data.annotation.Id;
 
 public class Bathroom {
   @Id private String id;
   private Set<Review> reviews;
-  private Set<String> photos;
   private String building;
   private int floor;
   private String roomNumber;
@@ -19,41 +16,64 @@ public class Bathroom {
   private double avgOverallRating;
   private double avgCleanlinessRating;
   private double avgSizeRating;
-  double latitude;
-  double longitude;
 
   /** a no argument constructor so that Jackson can deserialize the json */
-
-  public Bathroom(){
-    this.id = UUID.randomUUID().toString();
+  public Bathroom() {
     this.reviews = new HashSet<>();
-    this.photos = new HashSet<>();
+    this.avgOverallRating = -1;
+    this.avgCleanlinessRating = -1;
+    this.avgSizeRating = -1;
   }
-  public Bathroom(Set<Review> reviews, Set<String> photos, String building, int floor,
-                  String roomNumber, String gender, boolean wheelchairAccessible,
-                  boolean singleOccupancy, double avgOverallRating, double avgCleanlinessRating,
-                  double avgSizeRating, double latitude, double longitude){
-    this.reviews = reviews;
-    this.photos = photos;
+  // Constructor with parameters having the same name as instance variables
+  public Bathroom(
+      String id,
+      String building,
+      int floor,
+      String roomNumber,
+      String gender,
+      boolean wheelchairAccessible,
+      boolean singleOccupancy) {
+    this.id = id;
+    this.reviews = new HashSet<>();
     this.building = building;
     this.floor = floor;
     this.roomNumber = roomNumber;
     this.gender = gender;
     this.wheelchairAccessible = wheelchairAccessible;
     this.singleOccupancy = singleOccupancy;
-    this.avgOverallRating = avgOverallRating;
-    this.avgCleanlinessRating = avgCleanlinessRating;
-    this.avgSizeRating = avgSizeRating;
-    this.latitude = latitude;
-    this.longitude = longitude;
-  }
-  public String getId(){
-    return this.id;
+    this.avgOverallRating = -1;
+    this.avgCleanlinessRating = -1;
+    this.avgSizeRating = -1;
   }
 
-  public void setId(String id){
-    this.id = id;
+  public void updateOverallRating(double newRating) {
+    if (this.avgOverallRating == -1) {
+      this.avgOverallRating = newRating;
+    } else {
+      this.avgOverallRating =
+          (this.avgOverallRating * (this.reviews.size()) + newRating) / this.reviews.size();
+    }
   }
+
+  public void updateCleanlinessRating(double newRating) {
+    if (this.avgCleanlinessRating == -1) {
+      this.avgCleanlinessRating = newRating;
+    } else {
+      this.avgCleanlinessRating =
+          (this.avgCleanlinessRating * (this.reviews.size()) + newRating) / this.reviews.size();
+    }
+  }
+
+  public void updateSizeRating(double newRating) {
+    if (this.avgSizeRating == -1) {
+      this.avgSizeRating = newRating;
+    } else {
+      this.avgSizeRating =
+          (this.avgSizeRating * (this.reviews.size()) + newRating) / this.reviews.size();
+    }
+  }
+
+  // Getters and setters for each instance variable
 
   public Set<Review> getReviews() {
     return reviews;
@@ -61,14 +81,6 @@ public class Bathroom {
 
   public void setReviews(Set<Review> reviews) {
     this.reviews = reviews;
-  }
-
-  public Set<String> getPhotos() {
-    return photos;
-  }
-
-  public void setPhotos(Set<String> photos) {
-    this.photos = photos;
   }
 
   public String getBuilding() {
@@ -103,7 +115,7 @@ public class Bathroom {
     this.gender = gender;
   }
 
-  public boolean isWheelchairAccessible() {
+  public boolean getWheelchairAccessible() {
     return wheelchairAccessible;
   }
 
@@ -111,7 +123,7 @@ public class Bathroom {
     this.wheelchairAccessible = wheelchairAccessible;
   }
 
-  public boolean isSingleOccupancy() {
+  public boolean getSingleOccupancy() {
     return singleOccupancy;
   }
 
@@ -143,19 +155,11 @@ public class Bathroom {
     this.avgSizeRating = avgSizeRating;
   }
 
-  public double getLatitude() {
-    return latitude;
+  public String getId() {
+    return this.id;
   }
 
-  public void setLatitude(double latitude) {
-    this.latitude = latitude;
-  }
-
-  public double getLongitude() {
-    return longitude;
-  }
-
-  public void setLongitude(double longitude) {
-    this.longitude = longitude;
+  public void setId(String id) {
+    this.id = id;
   }
 }

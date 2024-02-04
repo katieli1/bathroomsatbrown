@@ -1,40 +1,161 @@
 package main;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 @RestController
-@RequestMapping(value = "/bathrooms") // maps the controller to the "/posters" endpoint.
+@RequestMapping(value = "/bathrooms") // maps the controller to the "/bathrooms" endpoint.
 @CrossOrigin(origins = "http://localhost:5173")
 public class BathroomController {
   private final BathroomService bathroomService;
+
   public BathroomController(BathroomService bathroomService) {
     this.bathroomService = bathroomService;
   }
 
   @GetMapping("/")
   public CompletableFuture<ResponseEntity<List<Bathroom>>> getAllBathrooms() {
-    System.out.println("hello");
-    return this.bathroomService.getBathrooms()
-            .thenApply(ResponseEntity::ok)
-            .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+    return this.bathroomService
+        .getBathrooms()
+        .thenApply(ResponseEntity::ok)
+        .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+  }
+
+  @GetMapping("/{id}")
+  public CompletableFuture<ResponseEntity<ServiceResponse<Bathroom>>> getById(
+      @PathVariable String id) {
+    return this.bathroomService
+        .getById(id)
+        .thenApply(ResponseEntity::ok)
+        .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
   }
 
   @PostMapping(value = "/create")
-  public CompletableFuture<ServiceResponse<Bathroom>> create(
-          @RequestParam String building, @RequestParam int floor, @RequestParam String roomNumber,
-          @RequestParam String gender, @RequestParam boolean wheelchairAccessible,
-          @RequestParam boolean singleOccupancy, @RequestParam double avgOverallRating,
-          @RequestParam double avgCleanlinessRating, @RequestParam double avgSizeRating,
-          @RequestParam double latitude, @RequestParam double longitude) {
-    Bathroom bathroom = new Bathroom(); // edit constructor / setters to set vals from request params
+  public CompletableFuture<ServiceResponse<Bathroom>> create(@RequestBody Bathroom bathroom) {
     this.bathroomService.createBathroom(bathroom);
     return CompletableFuture.completedFuture(
         new ServiceResponse<Bathroom>(bathroom, "saved bathroom"));
+  }
+
+  @GetMapping(value = "/getOverallInRange")
+  public CompletableFuture<ResponseEntity<List<Bathroom>>> getOverallInRange(
+      @RequestParam double min, @RequestParam double max) {
+    return this.bathroomService
+        .getBathrooms()
+        .thenApply(
+            bathrooms ->
+                bathrooms.stream()
+                    .filter(
+                        bathroom ->
+                            bathroom.getAvgOverallRating() > min
+                                && bathroom.getAvgOverallRating() < max)
+                    .sorted(
+                        Comparator.nullsLast(Comparator.comparing(Bathroom::getAvgOverallRating)))
+                    .collect(Collectors.toList()))
+        .thenApply(ResponseEntity::ok)
+        .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+  }
+
+  @GetMapping(value = "/getCleanlinessInRange")
+  public CompletableFuture<ResponseEntity<List<Bathroom>>> getCleanlinessInRange(
+      @RequestParam double min, @RequestParam double max) {
+    return this.bathroomService
+        .getBathrooms()
+        .thenApply(
+            bathrooms ->
+                bathrooms.stream()
+                    .filter(
+                        bathroom ->
+                            bathroom.getAvgCleanlinessRating() > min
+                                && bathroom.getAvgCleanlinessRating() < max)
+                    .sorted(
+                        Comparator.nullsLast(
+                            Comparator.comparing(Bathroom::getAvgCleanlinessRating)))
+                    .collect(Collectors.toList()))
+        .thenApply(ResponseEntity::ok)
+        .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+  }
+
+  @GetMapping(value = "/getSizeInRange")
+  public CompletableFuture<ResponseEntity<List<Bathroom>>> getSizeInRange(
+      @RequestParam double min, @RequestParam double max) {
+    return this.bathroomService
+        .getBathrooms()
+        .thenApply(
+            bathrooms ->
+                bathrooms.stream()
+                    .filter(
+                        bathroom ->
+                            bathroom.getAvgSizeRating() > min && bathroom.getAvgSizeRating() < max)
+                    .sorted(Comparator.nullsLast(Comparator.comparing(Bathroom::getAvgSizeRating)))
+                    .collect(Collectors.toList()))
+        .thenApply(ResponseEntity::ok)
+        .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+  }
+
+  @GetMapping(value = "/getByBuilding")
+  public CompletableFuture<ResponseEntity<List<Bathroom>>> getByBuilding(
+      @RequestParam String building) {
+    return this.bathroomService
+        .getBathrooms()
+        .thenApply(
+            bathrooms ->
+                bathrooms.stream()
+                    .filter(bathroom -> bathroom.getBuilding().equals(building))
+                    .sorted(Comparator.nullsLast(Comparator.comparing(Bathroom::getBuilding)))
+                    .collect(Collectors.toList()))
+        .thenApply(ResponseEntity::ok)
+        .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+  }
+
+  @GetMapping(value = "/getWheelchairAccessible")
+  public CompletableFuture<ResponseEntity<List<Bathroom>>> getWheelchairAccessible() {
+    return this.bathroomService
+        .getBathrooms()
+        .thenApply(
+            bathrooms ->
+                bathrooms.stream()
+                    .filter(bathroom -> bathroom.getWheelchairAccessible() == (true))
+                    .sorted(
+                        Comparator.nullsLast(
+                            Comparator.comparing(Bathroom::getWheelchairAccessible)))
+                    .collect(Collectors.toList()))
+        .thenApply(ResponseEntity::ok)
+        .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+  }
+
+  @GetMapping(value = "/getGenderNeutral")
+  public CompletableFuture<ResponseEntity<List<Bathroom>>> getGenderNeutral() {
+    return this.bathroomService
+        .getBathrooms()
+        .thenApply(
+            bathrooms ->
+                bathrooms.stream()
+                    .filter(
+                        bathroom ->
+                            bathroom.getGender().equals("n") || bathroom.getGender().equals("o"))
+                    .sorted(Comparator.nullsLast(Comparator.comparing(Bathroom::getGender)))
+                    .collect(Collectors.toList()))
+        .thenApply(ResponseEntity::ok)
+        .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+  }
+
+  @GetMapping(value = "/getSingleOccupancy")
+  public CompletableFuture<ResponseEntity<List<Bathroom>>> getSingleOccupancy() {
+    return this.bathroomService
+        .getBathrooms()
+        .thenApply(
+            bathrooms ->
+                bathrooms.stream()
+                    .filter(bathroom -> bathroom.getSingleOccupancy() == true)
+                    .sorted(Comparator.nullsLast(Comparator.comparing(Bathroom::getGender)))
+                    .collect(Collectors.toList()))
+        .thenApply(ResponseEntity::ok)
+        .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
   }
 }
