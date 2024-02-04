@@ -1,9 +1,7 @@
 package main;
 
-import org.springframework.data.annotation.Id;
-
-import java.util.HashSet;
 import java.util.UUID;
+import org.springframework.data.annotation.Id;
 
 public class Review {
   @Id private String id;
@@ -12,11 +10,11 @@ public class Review {
   private double cleanlinessRating;
   private double sizeRating;
 
-  public Review(){
+  public Review() {
+    this.id = UUID.randomUUID().toString();
   }
   // Constructor with parameters having the same name as instance variables
-  public Review(String review, double overallRating, double cleanlinessRating,
-                double sizeRating) {
+  public Review(String review, double overallRating, double cleanlinessRating, double sizeRating) {
     this.id = UUID.randomUUID().toString();
     this.review = review;
     this.overallRating = overallRating;
@@ -67,6 +65,4 @@ public class Review {
   public void setId(String id) {
     this.id = id;
   }
-
-
 }

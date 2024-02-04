@@ -2,7 +2,6 @@ package main;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import org.springframework.data.annotation.Id;
 
 public class Bathroom {
@@ -17,20 +16,23 @@ public class Bathroom {
   private double avgOverallRating;
   private double avgCleanlinessRating;
   private double avgSizeRating;
-  double latitude;
-  double longitude;
 
   /** a no argument constructor so that Jackson can deserialize the json */
-
-  public Bathroom(){
+  public Bathroom() {
     this.reviews = new HashSet<>();
+    this.avgOverallRating = -1;
+    this.avgCleanlinessRating = -1;
+    this.avgSizeRating = -1;
   }
   // Constructor with parameters having the same name as instance variables
-  public Bathroom(String id, String building, int floor,
-              String roomNumber, String gender, boolean wheelchairAccessible,
-              boolean singleOccupancy, double avgOverallRating,
-              double avgCleanlinessRating, double avgSizeRating,
-              double latitude, double longitude) {
+  public Bathroom(
+      String id,
+      String building,
+      int floor,
+      String roomNumber,
+      String gender,
+      boolean wheelchairAccessible,
+      boolean singleOccupancy) {
     this.id = id;
     this.reviews = new HashSet<>();
     this.building = building;
@@ -39,26 +41,36 @@ public class Bathroom {
     this.gender = gender;
     this.wheelchairAccessible = wheelchairAccessible;
     this.singleOccupancy = singleOccupancy;
-    this.avgOverallRating = avgOverallRating;
-    this.avgCleanlinessRating = avgCleanlinessRating;
-    this.avgSizeRating = avgSizeRating;
-    this.latitude = latitude;
-    this.longitude = longitude;
+    this.avgOverallRating = -1;
+    this.avgCleanlinessRating = -1;
+    this.avgSizeRating = -1;
   }
 
   public void updateOverallRating(double newRating) {
-    this.avgOverallRating =
-            (this.avgOverallRating * (this.reviews.size()) + newRating) / this.reviews.size();
+    if (this.avgOverallRating == -1) {
+      this.avgOverallRating = newRating;
+    } else {
+      this.avgOverallRating =
+          (this.avgOverallRating * (this.reviews.size()) + newRating) / this.reviews.size();
+    }
   }
 
   public void updateCleanlinessRating(double newRating) {
-    this.avgCleanlinessRating =
-            (this.avgCleanlinessRating * (this.reviews.size()) + newRating) / this.reviews.size();
+    if (this.avgCleanlinessRating == -1) {
+      this.avgCleanlinessRating = newRating;
+    } else {
+      this.avgCleanlinessRating =
+          (this.avgCleanlinessRating * (this.reviews.size()) + newRating) / this.reviews.size();
+    }
   }
 
   public void updateSizeRating(double newRating) {
-    this.avgSizeRating =
-            (this.avgSizeRating * (this.reviews.size()) + newRating) / this.reviews.size();
+    if (this.avgSizeRating == -1) {
+      this.avgSizeRating = newRating;
+    } else {
+      this.avgSizeRating =
+          (this.avgSizeRating * (this.reviews.size()) + newRating) / this.reviews.size();
+    }
   }
 
   // Getters and setters for each instance variable
@@ -143,29 +155,11 @@ public class Bathroom {
     this.avgSizeRating = avgSizeRating;
   }
 
-  public double getLatitude() {
-    return latitude;
-  }
-
-  public void setLatitude(double latitude) {
-    this.latitude = latitude;
-  }
-
-  public double getLongitude() {
-    return longitude;
-  }
-
-  public void setLongitude(double longitude) {
-    this.longitude = longitude;
-  }
-
-  public String getId(){
+  public String getId() {
     return this.id;
   }
 
-  public void setId(String id){
+  public void setId(String id) {
     this.id = id;
   }
-
-
 }
