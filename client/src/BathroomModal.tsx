@@ -22,17 +22,14 @@ export default function BathroomModal({ onClose }) {
                 <img className="loading-gif" src="/loading.gif" />
               </div>
             )}
-            <ModalHeader className="modal-header">Upload a Poster</ModalHeader>
+
             <ModalCloseButton
               className="close-button"
               onClick={onClose}
               style={{ backgroundColor: "var(--dark-purple100)" }}
             />
             <ModalBody className="modal-body">
-              <div
-                className="all"
-                style={{ display: "flex", flexDirection: "column" }}
-              >
+              <div className="all" style={{ display: "flex" }}>
                 <div
                   className="info-container"
                   style={{
@@ -41,9 +38,9 @@ export default function BathroomModal({ onClose }) {
                     flexDirection: "column",
                   }}
                 >
-                  <div className="building">Andrews</div>
-                  <div className="floor">1</div>
-                  <div className="gender">F</div>
+                  <h1 className="building">Andrews</h1>
+                  <h3 className="floor">1</h3>
+                  <h3 className="gender">F</h3>
                   <div className="main-img">
                     <img
                       src="drive-download-20240204T020153Z-001/IMG_3891.JPG"
