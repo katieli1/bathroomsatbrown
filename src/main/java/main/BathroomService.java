@@ -22,19 +22,19 @@ public class BathroomService {
 
   public CompletableFuture<ServiceResponse<Bathroom>> getById(String id) {
     return this.getBathrooms()
-            .thenCompose(
-                    bathrooms ->
-                            bathrooms.stream()
-                                    .filter(bathroom -> id.equals(bathroom.getId()))
-                                    .findFirst()
-                                    .map(
-                                            bathroom ->
-                                                    CompletableFuture.completedFuture(
-                                                            new ServiceResponse<Bathroom>(bathroom, "Bathroom with id found")))
-                                    .orElseGet(
-                                            () ->
-                                                    CompletableFuture.completedFuture(
-                                                            new ServiceResponse<Bathroom>("Bathroom not found"))));
+        .thenCompose(
+            bathrooms ->
+                bathrooms.stream()
+                    .filter(bathroom -> id.equals(bathroom.getId()))
+                    .findFirst()
+                    .map(
+                        bathroom ->
+                            CompletableFuture.completedFuture(
+                                new ServiceResponse<Bathroom>(bathroom, "Bathroom with id found")))
+                    .orElseGet(
+                        () ->
+                            CompletableFuture.completedFuture(
+                                new ServiceResponse<Bathroom>("Bathroom not found"))));
   }
 
   public ServiceResponse<Bathroom> createBathroom(Bathroom bathroom) {

@@ -1,0 +1,181 @@
+import {
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalOverlay,
+} from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import "./modal.css";
+
+const idToImage: { [key: number]: string } = {
+  2: "drive-download-20240204T020153Z-001/IMG_3893.JPG",
+  3: "drive-download-20240204T020153Z-001/IMG_3894.JPG",
+  4: "drive-download-20240204T020153Z-001/IMG_3897.JPG",
+  5: "drive-download-20240204T020153Z-001/IMG_3898.JPG",
+  6: "drive-download-20240204T020153Z-001/IMG_3901.JPG",
+  7: "drive-download-20240204T020153Z-001/IMG_3903.JPG",
+  8: "drive-download-20240204T020153Z-001/IMG_3935.JPG",
+  9: "drive-download-20240204T020153Z-001/IMG_3941.JPG",
+  10: "drive-download-20240204T020153Z-001/IMG_3942.JPG",
+  11: "drive-download-20240204T020153Z-001/IMG_3946.JPG",
+  12: "drive-download-20240204T020153Z-001/IMG_3948.JPG",
+  13: "drive-download-20240204T020153Z-001/IMG_3951.JPG",
+  14: "drive-download-20240204T020153Z-001/IMG_3955.JPG",
+  15: "drive-download-20240204T020153Z-001/IMG_3957.JPG",
+  16: "drive-download-20240204T020153Z-001/IMG_3959.JPG",
+  17: "drive-download-20240204T020153Z-001/IMG_3965.JPG",
+  18: "drive-download-20240204T020153Z-001/IMG_3967.JPG",
+  19: "drive-download-20240204T020153Z-001/IMG_3968.JPG",
+  20: "drive-download-20240204T020153Z-001/IMG_3977.JPG",
+  21: "drive-download-20240204T020153Z-001/IMG_3979.JPG",
+  22: "drive-download-20240204T020153Z-001/IMG_3981.JPG",
+  23: "drive-download-20240204T020153Z-001/IMG_3983.JPG",
+  24: "drive-download-20240204T020153Z-001/IMG_3986.JPG",
+  25: "drive-download-20240204T020153Z-001/IMG_3988.JPG",
+  26: "drive-download-20240204T020153Z-001/IMG_3993.JPG",
+  27: "drive-download-20240204T020153Z-001/IMG_4021.JPG",
+  28: "drive-download-20240204T020153Z-001/IMG_4023.JPG",
+};
+
+interface Bathroom {
+  id: number;
+  reviews: string[];
+  building: string;
+  floor: number;
+  roomNumber: string;
+  gender: string;
+  wheelchairAccessible: boolean;
+  singleOccupancy: boolean;
+  avgOverallRating: number;
+  avgCleanlinessRating: number;
+  avgSizeRating: number;
+}
+
+export default function BathroomModal({ onClose, id }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [curBathroom, setCurBathroom] = useState<Bathroom | null>(null);
+  useEffect(() => {
+    fetchBathrooms();
+  }, []);
+  // dict of id : dict of info for each marker so on click is specific
+  const fetchBathrooms = async () => {
+    setIsLoading(true);
+    // const bathrooms = await fetch();
+    const idToBathrooms: Bathroom[] = [];
+    //set curBathroom to bathroom @ id
+    // setCurBathroom(idToBathrooms[id]);
+    setCurBathroom(testBathroom);
+    setIsLoading(false);
+  };
+
+  const testBathroom: Bathroom = {
+    id: 2,
+    reviews: [
+      "this is the best bathroom on campus!!",
+      "sometimes the paper towels don't work, but otherwise it's ok",
+      "I've been drawing graffitti on the walls here since 1995",
+      "beware of the big stall, I've seen horrifying things in there...",
+    ],
+    building: "Andrews",
+    floor: 0,
+    roomNumber: "019a",
+    wheelchairAccessible: true,
+    gender: "N",
+    singleOccupancy: false,
+    avgOverallRating: 3.5,
+    avgCleanlinessRating: 4,
+    avgSizeRating: 2,
+  };
+
+  return (
+    <>
+      {isLoading && (
+        <div className="loading-screen">
+          <img className="loading-gif" src="/loading.gif" />
+        </div>
+      )}
+      <Modal closeOnOverlayClick={false} isOpen={true} onClose={onClose}>
+        <div className="modal-font">
+          <ModalOverlay className="modal-overlay" />
+          <ModalContent className="modal-content">
+            {isLoading && (
+              <div className="loading-screen">
+                <img className="loading-gif" src="/loading.gif" />
+              </div>
+            )}
+
+            <ModalCloseButton
+              className="close-button"
+              onClick={onClose}
+              style={{ backgroundColor: "var(--dark-purple100)" }}
+            />
+            <ModalBody className="modal-body">
+              <div className="all" style={{ display: "flex" }}>
+                {curBathroom && (
+                  <>
+                    <div
+                      className="info-container"
+                      style={{
+                        width: "40%",
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <h1 className="building">{curBathroom.building}</h1>
+                      <h3 className="floor">{curBathroom.floor}</h3>
+                      <h3 className="gender">{curBathroom.gender}</h3>
+                      <div className="main-img">
+                        <img src={idToImage[curBathroom.id]} alt="" />
+                      </div>
+                      <div
+                        className="carosel"
+                        style={{ display: "flex" }}
+                      ></div>
+                    </div>
+                    <div
+                      className="reviews"
+                      style={{ display: "flex", flexDirection: "column" }}
+                    >
+                      <div className="info-row">
+                        <div className="field-name">Overall</div>
+                        <div className="field-text">
+                          {" "}
+                          {curBathroom.avgOverallRating}
+                        </div>
+                      </div>
+                      <div className="info-row">
+                        <div className="field-name">Cleanliness</div>
+                        <div className="field-text">
+                          {curBathroom.avgCleanlinessRating}
+                        </div>
+                      </div>
+                      <div className="info-row">
+                        <div className="field-name">Size</div>
+                        <div className="field-text">
+                          {" "}
+                          {curBathroom.avgSizeRating}
+                        </div>
+                      </div>
+
+                      <div
+                        className="review-list"
+                        style={{ display: "flex", flexDirection: "column" }}
+                      >
+                        {curBathroom.reviews.map((review, index) => (
+                          <div key={index} className="review">
+                            <p className="review-text">{review}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            </ModalBody>
+          </ModalContent>
+        </div>
+      </Modal>
+    </>
+  );
+}

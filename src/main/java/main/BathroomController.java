@@ -28,11 +28,11 @@ public class BathroomController {
 
   @GetMapping("/{id}")
   public CompletableFuture<ResponseEntity<ServiceResponse<Bathroom>>> getById(
-          @PathVariable String id) {
+      @PathVariable String id) {
     return this.bathroomService
-            .getById(id)
-            .thenApply(ResponseEntity::ok)
-            .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+        .getById(id)
+        .thenApply(ResponseEntity::ok)
+        .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
   }
 
   @PostMapping(value = "/create")
@@ -100,70 +100,62 @@ public class BathroomController {
 
   @GetMapping(value = "/getByBuilding")
   public CompletableFuture<ResponseEntity<List<Bathroom>>> getByBuilding(
-          @RequestParam String building) {
+      @RequestParam String building) {
     return this.bathroomService
-            .getBathrooms()
-            .thenApply(
-                    bathrooms ->
-                            bathrooms.stream()
-                                    .filter(
-                                            bathroom ->
-                                                    bathroom.getBuilding().equals(building))
-                                    .sorted(
-                                            Comparator.nullsLast(Comparator.comparing(Bathroom::getBuilding)))
-                                    .collect(Collectors.toList()))
-            .thenApply(ResponseEntity::ok)
-            .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+        .getBathrooms()
+        .thenApply(
+            bathrooms ->
+                bathrooms.stream()
+                    .filter(bathroom -> bathroom.getBuilding().equals(building))
+                    .sorted(Comparator.nullsLast(Comparator.comparing(Bathroom::getBuilding)))
+                    .collect(Collectors.toList()))
+        .thenApply(ResponseEntity::ok)
+        .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
   }
 
   @GetMapping(value = "/getWheelchairAccessible")
   public CompletableFuture<ResponseEntity<List<Bathroom>>> getWheelchairAccessible() {
     return this.bathroomService
-            .getBathrooms()
-            .thenApply(
-                    bathrooms ->
-                            bathrooms.stream()
-                                    .filter(
-                                            bathroom ->
-                                                    bathroom.getWheelchairAccessible() == (true))
-                                    .sorted(
-                                            Comparator.nullsLast(Comparator.comparing(Bathroom::getWheelchairAccessible)))
-                                    .collect(Collectors.toList()))
-            .thenApply(ResponseEntity::ok)
-            .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+        .getBathrooms()
+        .thenApply(
+            bathrooms ->
+                bathrooms.stream()
+                    .filter(bathroom -> bathroom.getWheelchairAccessible() == (true))
+                    .sorted(
+                        Comparator.nullsLast(
+                            Comparator.comparing(Bathroom::getWheelchairAccessible)))
+                    .collect(Collectors.toList()))
+        .thenApply(ResponseEntity::ok)
+        .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
   }
 
   @GetMapping(value = "/getGenderNeutral")
   public CompletableFuture<ResponseEntity<List<Bathroom>>> getGenderNeutral() {
     return this.bathroomService
-            .getBathrooms()
-            .thenApply(
-                    bathrooms ->
-                            bathrooms.stream()
-                                    .filter(
-                                            bathroom ->
-                                                    bathroom.getGender().equals("n") || bathroom.getGender().equals("o"))
-                                    .sorted(
-                                            Comparator.nullsLast(Comparator.comparing(Bathroom::getGender)))
-                                    .collect(Collectors.toList()))
-            .thenApply(ResponseEntity::ok)
-            .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+        .getBathrooms()
+        .thenApply(
+            bathrooms ->
+                bathrooms.stream()
+                    .filter(
+                        bathroom ->
+                            bathroom.getGender().equals("n") || bathroom.getGender().equals("o"))
+                    .sorted(Comparator.nullsLast(Comparator.comparing(Bathroom::getGender)))
+                    .collect(Collectors.toList()))
+        .thenApply(ResponseEntity::ok)
+        .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
   }
 
   @GetMapping(value = "/getSingleOccupancy")
   public CompletableFuture<ResponseEntity<List<Bathroom>>> getSingleOccupancy() {
     return this.bathroomService
-            .getBathrooms()
-            .thenApply(
-                    bathrooms ->
-                            bathrooms.stream()
-                                    .filter(
-                                            bathroom ->
-                                                    bathroom.getSingleOccupancy() == true)
-                                    .sorted(
-                                            Comparator.nullsLast(Comparator.comparing(Bathroom::getGender)))
-                                    .collect(Collectors.toList()))
-            .thenApply(ResponseEntity::ok)
-            .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+        .getBathrooms()
+        .thenApply(
+            bathrooms ->
+                bathrooms.stream()
+                    .filter(bathroom -> bathroom.getSingleOccupancy() == true)
+                    .sorted(Comparator.nullsLast(Comparator.comparing(Bathroom::getGender)))
+                    .collect(Collectors.toList()))
+        .thenApply(ResponseEntity::ok)
+        .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
   }
 }
