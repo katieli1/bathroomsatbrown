@@ -2,12 +2,27 @@ package main;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.HashSet;
+import java.util.UUID;
+
 public class Review {
   @Id private String id;
   private String review;
   private double overallRating;
   private double cleanlinessRating;
   private double sizeRating;
+
+  public Review(){
+  }
+  // Constructor with parameters having the same name as instance variables
+  public Review(String review, double overallRating, double cleanlinessRating,
+                double sizeRating) {
+    this.id = UUID.randomUUID().toString();
+    this.review = review;
+    this.overallRating = overallRating;
+    this.cleanlinessRating = cleanlinessRating;
+    this.sizeRating = sizeRating;
+  }
 
   // Getter and Setter for 'review'
   public String getReview() {
@@ -43,6 +58,14 @@ public class Review {
 
   public void setSizeRating(double sizeRating) {
     this.sizeRating = sizeRating;
+  }
+
+  public String getId() {
+    return this.id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
   }
 
 }
