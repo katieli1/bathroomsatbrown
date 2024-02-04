@@ -52,6 +52,7 @@ export default function MapBox() {
     isOpen: false,
     markerId: null,
   });
+  const [filter, setFilter] = useState<number[]>([]);
 
   const [userState, setUserState] = useState({
     longitude: ProvidenceLatLong.long,
@@ -90,6 +91,25 @@ export default function MapBox() {
     console.log(viewState);
   }, []);
 
+  const onFilter = async (filter: string) => {
+    //take in string
+    //add to list
+    const building = await fetch(
+      "http://localhost:8080/bathrooms/getByBuilding/" + filter
+    );
+    if (building.ok) {
+      const build = await building.json();
+      console.log(build);
+
+      const bs: number[] = [];
+      build.forEach((building) => {
+        bs.push(building.id);
+      });
+      setFilter(bs);
+    }
+    //if filter list contains a building , set the class of that building to highlight
+  };
+
   return (
     <>
       {modalOpen.isOpen && (
@@ -104,9 +124,9 @@ export default function MapBox() {
         </div>
       )}
       <div className="side-bar">
-        <h1 className="title">Bathrooms at Brown</h1>
+        <h1 className="title">Bathrooms@Brown</h1>
         <Accordion defaultIndex={[0]} allowMultiple>
-          <AccordionItem isFocusable className="accordion-item">
+          <AccordionItem className="accordion-item">
             <h2>
               <AccordionButton>
                 <Box as="span" flex="1" textAlign="left">
@@ -118,14 +138,21 @@ export default function MapBox() {
             <AccordionPanel pb={5} className="accordion-item">
               <div className="button-grid">
                 {buildings.map((building, index) => (
-                  <button key={index} className="building-button">
+                  <button
+                    key={index}
+                    className="building-button"
+                    value={building}
+                    onClick={(e) =>
+                      onFilter((e.target as HTMLButtonElement).value)
+                    }
+                  >
                     {building}
                   </button>
                 ))}
               </div>
             </AccordionPanel>
           </AccordionItem>
-          <AccordionItem isFocusable>
+          <AccordionItem>
             <h2>
               <AccordionButton>
                 <Box as="span" flex="1" textAlign="left">
@@ -137,14 +164,21 @@ export default function MapBox() {
             <AccordionPanel pb={5} className="accordion-item">
               <div className="button-grid">
                 {["Male", "Female", "Gender Neutral"].map((gender, index) => (
-                  <button key={index} className="building-button">
+                  <button
+                    key={index}
+                    className="building-button"
+                    value={gender}
+                    onClick={(e) =>
+                      onFilter((e.target as HTMLButtonElement).value)
+                    }
+                  >
                     {gender}
                   </button>
                 ))}
               </div>
             </AccordionPanel>
           </AccordionItem>
-          <AccordionItem isFocusable>
+          <AccordionItem>
             <h2>
               <AccordionButton>
                 <Box as="span" flex="1" textAlign="left">
@@ -157,7 +191,14 @@ export default function MapBox() {
               <div className="button-grid">
                 {["Single Occupancy", "Wheelchair Accessible"].map(
                   (option, index) => (
-                    <button key={index} className="building-button">
+                    <button
+                      key={index}
+                      className="building-button"
+                      value={option}
+                      onClick={(e) =>
+                        onFilter((e.target as HTMLButtonElement).value)
+                      }
+                    >
                       {option}
                     </button>
                   )
@@ -180,7 +221,6 @@ export default function MapBox() {
             height: "100vh",
           }}
           mapStyle={"mapbox://styles/awang1245/cls6taqyd02fz01p5d4qpdrhr"}
-          // onClick={onMapClick}
           pitch={50}
           minZoom={16}
           maxZoom={22}
