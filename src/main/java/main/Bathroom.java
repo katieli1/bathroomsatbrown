@@ -2,14 +2,12 @@ package main;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 
 public class Bathroom {
   @Id private String id;
   private Set<Review> reviews;
-  private Set<String> photos;
   private String building;
   private int floor;
   private String roomNumber;
@@ -25,19 +23,16 @@ public class Bathroom {
   /** a no argument constructor so that Jackson can deserialize the json */
 
   public Bathroom(){
-    this.id = UUID.randomUUID().toString();
     this.reviews = new HashSet<>();
-    this.photos = new HashSet<>();
   }
   // Constructor with parameters having the same name as instance variables
-  public Bathroom(String building, int floor,
+  public Bathroom(String id, String building, int floor,
               String roomNumber, String gender, boolean wheelchairAccessible,
               boolean singleOccupancy, double avgOverallRating,
               double avgCleanlinessRating, double avgSizeRating,
               double latitude, double longitude) {
-    this.id = UUID.randomUUID().toString();
+    this.id = id;
     this.reviews = new HashSet<>();
-    //this.photos = photos;
     this.building = building;
     this.floor = floor;
     this.roomNumber = roomNumber;
@@ -59,14 +54,6 @@ public class Bathroom {
 
   public void setReviews(Set<Review> reviews) {
     this.reviews = reviews;
-  }
-
-  public Set<String> getPhotos() {
-    return photos;
-  }
-
-  public void setPhotos(Set<String> photos) {
-    this.photos = photos;
   }
 
   public String getBuilding() {
