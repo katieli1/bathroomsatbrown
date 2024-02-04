@@ -15,6 +15,8 @@ interface LatLong {
   long: number;
 }
 
+//work for jackie!!
+
 export default function MapBox() {
   const ProvidenceLatLong: LatLong = { lat: 41.824, long: -71.4128 };
   const initialZoom = 19;
@@ -86,7 +88,7 @@ export default function MapBox() {
               longitude={userState.longitude}
             >
               <img
-                src="public/astronaut-svgrepo-com.svg"
+                src="astronaut-svgrepo-com.svg"
                 style={{ width: "100px" }}
               ></img>
             </Marker>
