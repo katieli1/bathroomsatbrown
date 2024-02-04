@@ -30,13 +30,14 @@ public class Bathroom {
     this.photos = new HashSet<>();
   }
   // Constructor with parameters having the same name as instance variables
-  public Bathroom(Set<Review> reviews, Set<String> photos, String building, int floor,
+  public Bathroom(String building, int floor,
               String roomNumber, String gender, boolean wheelchairAccessible,
               boolean singleOccupancy, double avgOverallRating,
               double avgCleanlinessRating, double avgSizeRating,
               double latitude, double longitude) {
-    this.reviews = reviews;
-    this.photos = photos;
+    this.id = UUID.randomUUID().toString();
+    this.reviews = new HashSet<>();
+    //this.photos = photos;
     this.building = building;
     this.floor = floor;
     this.roomNumber = roomNumber;
@@ -100,7 +101,7 @@ public class Bathroom {
     this.gender = gender;
   }
 
-  public boolean isWheelchairAccessible() {
+  public boolean getWheelchairAccessible() {
     return wheelchairAccessible;
   }
 
@@ -163,5 +164,6 @@ public class Bathroom {
   public void setId(String id){
     this.id = id;
   }
+
 
 }
