@@ -313,23 +313,22 @@ export default function MapBox() {
             longitude={-71.40225807979611}
             onClick={() => onMapClick(5)}
           >
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("5") ? (
+              <img id="5" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="5" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="5" className="andrews 128" src="map-pin.svg" />
+            {/* <img id="5" className="andrews 128" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.83060995182446}
             longitude={-71.40226053939269}
             onClick={() => onMapClick(6)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("6") ? (
+              <img id="6" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="6" className="andrews a24a" src="map-pin.svg" />
             )}
             <img id="6" className="andrews a26" src="map-pin.svg" />
           </Marker>
@@ -338,78 +337,72 @@ export default function MapBox() {
             longitude={-71.40202229860105}
             onClick={() => onMapClick(7)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("7") ? (
+              <img id="7" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="7" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="7" className="alumnae 237" src="map-pin.svg" />
+            {/* <img id="7" className="alumnae 237" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.82965481050266}
             longitude={-71.40218310254112}
             onClick={() => onMapClick(8)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("8") ? (
+              <img id="8" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="8" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="8" className="alumnae 109" src="map-pin.svg" />
+            {/* <img id="8" className="alumnae 109" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.82970686343001}
             longitude={-71.40218573867128}
             onClick={() => onMapClick(9)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("9") ? (
+              <img id="9" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="9" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="9" className="alumnae 121" src="map-pin.svg" />
+            {/* <img id="9" className="alumnae 121" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.82973239881283}
             longitude={-71.40219101093162}
             onClick={() => onMapClick(10)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("10") ? (
+              <img id="10" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="10" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="10" className="alumnae 003" src="map-pin.svg" />
+            {/* <img id="10" className="alumnae 003" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.8298188261868}
             longitude={-71.40205261409795}
             onClick={() => onMapClick(11)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("11") ? (
+              <img id="11" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="11" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="11" className="alumnae 005" src="map-pin.svg" />
+            {/* <img id="11" className="alumnae 005" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.82981882618687}
             longitude={-71.40222528062375}
             onClick={() => onMapClick(12)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("12") ? (
+              <img id="12" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="12" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="12" className="alumnae 019" src="map-pin.svg" />
+            {/* <img id="12" className="alumnae 019" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.82960398280931}
@@ -417,51 +410,48 @@ export default function MapBox() {
             onClick={() => onMapClick(13)}
           >
             {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("13") ? (
+              <img id="13" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="13" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="13" className="smitty b g07" src="map-pin.svg" />
+            {/* <img id="13" className="smitty b g07" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.82970497891877}
             longitude={-71.40271533989414}
             onClick={() => onMapClick(14)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("14") ? (
+              <img id="14" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="14" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="14" className="smitty b 103" src="map-pin.svg" />
+            {/* <img id="14" className="smitty b 103" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.8297781840541}
             longitude={-71.40280175892791}
             onClick={() => onMapClick(15)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("15") ? (
+              <img id="15" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="15" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="15" className="smitty b 204" src="map-pin.svg" />
+            {/* <img id="15" className="smitty b 204" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.8293793366263}
             longitude={-71.40160652734271}
             onClick={() => onMapClick(16)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("16") ? (
+              <img id="16" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="16" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="16" className="emery 013" src="map-pin.svg" />
+            {/* <img id="16" className="emery 013" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.82939140232427}
@@ -469,220 +459,204 @@ export default function MapBox() {
             onClick={() => onMapClick(17)}
           >
             {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("17") ? (
+              <img id="17" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="17" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="17" className="woolley 009" src="map-pin.svg" />
+            {/* <img id="17" className="woolley 009" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.82939399766055}
             longitude={-71.40190021734124}
             onClick={() => onMapClick(18)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("18") ? (
+              <img id="18" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="18" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="18" className="woolley 008" src="map-pin.svg" />
+            {/* <img id="18" className="woolley 008" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.83001799037227}
             longitude={-71.40185664832148}
             onClick={() => onMapClick(19)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("19") ? (
+              <img id="19" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="19" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="19" className="morriss 008a" src="map-pin.svg" />
+            {/* <img id="19" className="morriss 008a" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.830145033923095}
             longitude={-71.40178316038465}
             onClick={() => onMapClick(20)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("20") ? (
+              <img id="20" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="20" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="20" className="champlin 006" src="map-pin.svg" />
+            {/* <img id="20" className="champlin 006" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.8300290790471}
             longitude={-71.401623962717}
             onClick={() => onMapClick(21)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("21") ? (
+              <img id="21" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="21" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="21" className="morriss 102" src="map-pin.svg" />
+            {/* <img id="21" className="morriss 102" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.83003712857294}
             longitude={-71.40161195949756}
             onClick={() => onMapClick(22)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("22") ? (
+              <img id="22" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="22" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="22" className="morriss 103" src="map-pin.svg" />
+            {/* <img id="22" className="morriss 103" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.825242166164905}
             longitude={-71.40101760510177}
             onClick={() => onMapClick(23)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("23") ? (
+              <img id="23" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="23" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="23" className="ratty 040" src="map-pin.svg" />
+            {/* <img id="23" className="ratty 040" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.825282170028274}
             longitude={-71.4007177188587}
             onClick={() => onMapClick(24)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("24") ? (
+              <img id="24" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="24" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="24" className="ratty 040" src="map-pin.svg" />
+            {/* <img id="24" className="ratty 040" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.82523251005622}
             longitude={-71.40083804358585}
             onClick={() => onMapClick(25)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("25") ? (
+              <img id="25" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="25" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="25" className="ratty 100" src="map-pin.svg" />
+            {/* <img id="25" className="ratty 100" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.82686296526382}
             longitude={-71.4002121009158}
             onClick={() => onMapClick(26)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("26") ? (
+              <img id="26" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="26" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="26" className="scili 1314" src="map-pin.svg" />
+            {/* <img id="26" className="scili 1314" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.82687695605024}
             longitude={-71.40008938986279}
             onClick={() => onMapClick(27)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("27") ? (
+              <img id="27" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="27" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="27" className="scili 1214" src="map-pin.svg" />
+            {/* <img id="27" className="scili 1214" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.82689044716282}
             longitude={-71.4000672616401}
             onClick={() => onMapClick(28)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("28") ? (
+              <img id="28" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="28" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="28" className="scili 1114" src="map-pin.svg" />
+            {/* <img id="28" className="scili 1114" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.826922426085}
             longitude={-71.40004714507404}
             onClick={() => onMapClick(29)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("29") ? (
+              <img id="29" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="29" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="29" className="scili 417" src="map-pin.svg" />
+            {/* <img id="29" className="scili 417" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.82696739641727}
             longitude={-71.40006793219231}
             onClick={() => onMapClick(30)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("30") ? (
+              <img id="30" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="30" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="30" className="scili 414" src="map-pin.svg" />
+            {/* <img id="30" className="scili 414" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.82700986836875}
             longitude={-71.4000652499835}
             onClick={() => onMapClick(31)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("31") ? (
+              <img id="31" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="31" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="31" className="scili a03" src="map-pin.svg" />
+            {/* <img id="31" className="scili a03" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.827037350204705}
             longitude={-71.40006390887909}
             onClick={() => onMapClick(32)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("32") ? (
+              <img id="32" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="32" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="32" className="scili a02" src="map-pin.svg" />
+            {/* <img id="32" className="scili a02" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.82703185383847}
             longitude={-71.40016583281383}
             onClick={() => onMapClick(33)}
           >
-            {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("33") ? (
+              <img id="33" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="33" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="33" className="scili a005b" src="map-pin.svg" />
+            {/* <img id="33" className="scili a005b" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.827014365397254}
@@ -690,12 +664,12 @@ export default function MapBox() {
             onClick={() => onMapClick(34)}
           >
             {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("34") ? (
+              <img id="34" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="34" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="34" className="scili a005a" src="map-pin.svg" />
+            {/* <img id="34" className="scili a005a" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.82616150324991}
@@ -703,12 +677,12 @@ export default function MapBox() {
             onClick={() => onMapClick(35)}
           >
             {" "}
-            {filter.includes("4") ? (
-              <img id="4" className="andrews a24a" src="pin.svg" />
+            {filter.includes("35") ? (
+              <img id="35" className="andrews a24a" src="pin.svg" />
             ) : (
-              <img id="4" className="andrews a24a" src="map-pin.svg" />
+              <img id="35" className="andrews a24a" src="map-pin.svg" />
             )}
-            <img id="35" className="macmillan 118" src="map-pin.svg" />
+            {/* <img id="35" className="macmillan 118" src="map-pin.svg" /> */}
           </Marker>
           <Marker
             latitude={41.82611820009942}
