@@ -52,7 +52,7 @@ interface Bathroom {
   avgSizeRating: number;
 }
 
-export default function BathroomModal({ onClose, id }) {
+export default function BathroomModal({ onClose, photoId }) {
   const [isLoading, setIsLoading] = useState(false);
   const [curBathroom, setCurBathroom] = useState<Bathroom | null>(null);
   useEffect(() => {
@@ -64,7 +64,7 @@ export default function BathroomModal({ onClose, id }) {
     // const bathrooms = await fetch();
     const idToBathrooms: Bathroom[] = [];
     //set curBathroom to bathroom @ id
-    // setCurBathroom(idToBathrooms[id]);
+    //setCurBathroom(idToBathrooms[photoId]);
     setCurBathroom(testBathroom);
     setIsLoading(false);
   };
@@ -111,7 +111,7 @@ export default function BathroomModal({ onClose, id }) {
               style={{ backgroundColor: "var(--dark-purple100)" }}
             />
             <ModalBody className="modal-body">
-              <div className="all" style={{ display: "flex" }}>
+              <div className="all" style={{ display: "flex", padding: "2vw" }}>
                 {curBathroom && (
                   <>
                     <div
@@ -122,9 +122,17 @@ export default function BathroomModal({ onClose, id }) {
                         flexDirection: "column",
                       }}
                     >
-                      <h1 className="building">{curBathroom.building}</h1>
-                      <h3 className="floor">{curBathroom.floor}</h3>
-                      <h3 className="gender">{curBathroom.gender}</h3>
+                      <h1 className="building" style={{ fontSize: "4vw" }}>
+                        {curBathroom.building}
+                      </h1>
+                      <div className="info-row">
+                        <div className="field-name">Floor</div>
+                        <div className="field-text">{curBathroom.floor}</div>
+                      </div>
+                      <div className="info-row">
+                        <div className="field-name">Gender</div>
+                        <div className="field-text">{curBathroom.gender}</div>
+                      </div>
                       <div className="main-img">
                         <img src={idToImage[curBathroom.id]} alt="" />
                       </div>
@@ -140,7 +148,6 @@ export default function BathroomModal({ onClose, id }) {
                       <div className="info-row">
                         <div className="field-name">Overall</div>
                         <div className="field-text">
-                          {" "}
                           {curBathroom.avgOverallRating}
                         </div>
                       </div>

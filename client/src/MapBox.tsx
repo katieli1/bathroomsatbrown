@@ -16,7 +16,7 @@ interface LatLong {
 }
 export default function MapBox() {
   const ProvidenceLatLong: LatLong = { lat: 41.824, long: -71.4128 };
-  const initialZoom = 19;
+  const initialZoom = 18;
   const [isLoading, setIsLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState<{
     isOpen: boolean;
@@ -68,7 +68,7 @@ export default function MapBox() {
       {modalOpen.isOpen && (
         <BathroomModal
           onClose={() => setModalOpen({ isOpen: false, markerId: null })}
-          id={modalOpen.markerId}
+          photoId={modalOpen.markerId}
         />
       )}
       {isLoading && (
