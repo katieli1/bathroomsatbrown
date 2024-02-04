@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 
 import { ACCESS_TOKEN } from "./private/api";
 import "./MapBox.css";
+import BathroomModal from "./BathroomModal";
 
 interface LatLong {
   lat: number;
@@ -18,6 +19,7 @@ export default function MapBox() {
   const ProvidenceLatLong: LatLong = { lat: 41.824, long: -71.4128 };
   const initialZoom = 19;
   const [isLoading, setIsLoading] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const [userState, setUserState] = useState({
     longitude: ProvidenceLatLong.long,
@@ -32,8 +34,7 @@ export default function MapBox() {
   });
 
   function onMapClick(e: MapLayerMouseEvent) {
-    console.log(e.lngLat.lat);
-    console.log(e.lngLat.lng);
+    setModalOpen(true);
   }
 
   useEffect(() => {
@@ -57,6 +58,7 @@ export default function MapBox() {
 
   return (
     <>
+      {modalOpen && <BathroomModal onClose={() => setModalOpen(false)} />}
       {isLoading && (
         <div className="loading-screen">
           <img className="loading-gif" src="/loading.gif" />
