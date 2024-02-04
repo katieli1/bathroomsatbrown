@@ -55,38 +55,46 @@ interface Bathroom {
 export default function BathroomModal({ onClose, photoId }) {
   const [isLoading, setIsLoading] = useState(false);
   const [curBathroom, setCurBathroom] = useState<Bathroom | null>(null);
+
   useEffect(() => {
     fetchBathrooms();
+    console.log(curBathroom)
   }, []);
+
   // dict of id : dict of info for each marker so on click is specific
   const fetchBathrooms = async () => {
     setIsLoading(true);
-    // const bathrooms = await fetch();
-    const idToBathrooms: Bathroom[] = [];
-    //set curBathroom to bathroom @ id
-    //setCurBathroom(idToBathrooms[photoId]);
-    setCurBathroom(testBathroom);
+
+     const bathrooms = await fetch("http://localhost:8080/bathrooms/" + photoId);
+     if (bathrooms.ok) {
+      const bathroom =  await bathrooms.json()
+      console.log(bathroom)
+      setCurBathroom(bathroom.data);
+ 
+     }
+    
+    //setCurBathroom(testBathroom);
     setIsLoading(false);
   };
 
-  const testBathroom: Bathroom = {
-    id: 2,
-    reviews: [
-      "this is the best bathroom on campus!!",
-      "sometimes the paper towels don't work, but otherwise it's ok",
-      "I've been drawing graffitti on the walls here since 1995",
-      "beware of the big stall, I've seen horrifying things in there...",
-    ],
-    building: "Andrews",
-    floor: 0,
-    roomNumber: "019a",
-    wheelchairAccessible: true,
-    gender: "N",
-    singleOccupancy: false,
-    avgOverallRating: 3.5,
-    avgCleanlinessRating: 4,
-    avgSizeRating: 2,
-  };
+  // const testBathroom: Bathroom = {
+  //   id: 2,
+  //   reviews: [
+  //     "this is the best bathroom on campus!!",
+  //     "sometimes the paper towels don't work, but otherwise it's ok",
+  //     "I've been drawing graffitti on the walls here since 1995",
+  //     "beware of the big stall, I've seen horrifying things in there...",
+  //   ],
+  //   building: "Andrews",
+  //   floor: 0,
+  //   roomNumber: "019a",
+  //   wheelchairAccessible: true,
+  //   gender: "N",
+  //   singleOccupancy: false,
+  //   avgOverallRating: 3.5,
+  //   avgCleanlinessRating: 4,
+  //   avgSizeRating: 2,
+  // };
 
   return (
     <>
