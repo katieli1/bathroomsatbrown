@@ -3,3 +3,7 @@ root {
   font-weight: 300;
   font-style: normal;
 }
+
+img {
+  width: 30px;
+}
