@@ -123,7 +123,7 @@ public class Bathroom {
     this.wheelchairAccessible = wheelchairAccessible;
   }
 
-  public boolean isSingleOccupancy() {
+  public boolean getSingleOccupancy() {
     return singleOccupancy;
   }
 
@@ -162,4 +162,6 @@ public class Bathroom {
   public void setId(String id) {
     this.id = id;
   }
+
+
 }

@@ -115,4 +115,55 @@ public class BathroomController {
             .thenApply(ResponseEntity::ok)
             .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
   }
+
+  @GetMapping(value = "/getWheelchairAccessible")
+  public CompletableFuture<ResponseEntity<List<Bathroom>>> getWheelchairAccessible() {
+    return this.bathroomService
+            .getBathrooms()
+            .thenApply(
+                    bathrooms ->
+                            bathrooms.stream()
+                                    .filter(
+                                            bathroom ->
+                                                    bathroom.getWheelchairAccessible() == (true))
+                                    .sorted(
+                                            Comparator.nullsLast(Comparator.comparing(Bathroom::getWheelchairAccessible)))
+                                    .collect(Collectors.toList()))
+            .thenApply(ResponseEntity::ok)
+            .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+  }
+
+  @GetMapping(value = "/getGenderNeutral")
+  public CompletableFuture<ResponseEntity<List<Bathroom>>> getGenderNeutral() {
+    return this.bathroomService
+            .getBathrooms()
+            .thenApply(
+                    bathrooms ->
+                            bathrooms.stream()
+                                    .filter(
+                                            bathroom ->
+                                                    bathroom.getGender().equals("n") || bathroom.getGender().equals("o"))
+                                    .sorted(
+                                            Comparator.nullsLast(Comparator.comparing(Bathroom::getGender)))
+                                    .collect(Collectors.toList()))
+            .thenApply(ResponseEntity::ok)
+            .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+  }
+
+  @GetMapping(value = "/getSingleOccupancy")
+  public CompletableFuture<ResponseEntity<List<Bathroom>>> getSingleOccupancy() {
+    return this.bathroomService
+            .getBathrooms()
+            .thenApply(
+                    bathrooms ->
+                            bathrooms.stream()
+                                    .filter(
+                                            bathroom ->
+                                                    bathroom.getSingleOccupancy() == true)
+                                    .sorted(
+                                            Comparator.nullsLast(Comparator.comparing(Bathroom::getGender)))
+                                    .collect(Collectors.toList()))
+            .thenApply(ResponseEntity::ok)
+            .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+  }
 }
