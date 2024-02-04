@@ -52,6 +52,9 @@ public class ReviewService {
                 .map(
                         bathroom -> {
                             bathroom.getReviews().add(review);
+                            bathroom.updateOverallRating(review.getOverallRating());
+                            bathroom.updateCleanlinessRating(review.getCleanlinessRating());
+                            bathroom.updateSizeRating(review.getSizeRating());
                             return new ServiceResponse<>(bathroom, "Review added to bathroom");
                         })
                 .map(CompletableFuture::completedFuture) // Remove this line

@@ -46,6 +46,21 @@ public class Bathroom {
     this.longitude = longitude;
   }
 
+  public void updateOverallRating(double newRating) {
+    this.avgOverallRating =
+            (this.avgOverallRating * (this.reviews.size()) + newRating) / this.reviews.size();
+  }
+
+  public void updateCleanlinessRating(double newRating) {
+    this.avgCleanlinessRating =
+            (this.avgCleanlinessRating * (this.reviews.size()) + newRating) / this.reviews.size();
+  }
+
+  public void updateSizeRating(double newRating) {
+    this.avgSizeRating =
+            (this.avgSizeRating * (this.reviews.size()) + newRating) / this.reviews.size();
+  }
+
   // Getters and setters for each instance variable
 
   public Set<Review> getReviews() {
