@@ -39,7 +39,7 @@ const buildings: string[] = [
 
 export default function MapBox() {
   const ProvidenceLatLong: LatLong = { lat: 41.824, long: -71.4128 };
-  const initialZoom = 14;
+  const initialZoom = 18;
   const [isLoading, setIsLoading] = useState(true);
   const [tags, setTags] = useState<Set<string>>(new Set());
   const [modalOpen, setModalOpen] = useState<{
@@ -91,6 +91,9 @@ export default function MapBox() {
   const onFilter = async (filter: string) => {
     //take in string
     //add to list
+    if (filter.length > 0) {
+      setFilter([]);
+    }
     const building = await fetch(
       "http://localhost:8080/bathrooms/getByBuilding/" + filter
     );
@@ -107,8 +110,35 @@ export default function MapBox() {
     //if filter list contains a building , set the class of that building to highlight
   };
 
+  const onFilterAccess = async () => {
+    //take in string
+    //add to list
+    if (filter.length > 0) {
+      setFilter([]);
+    }
+    const building = await fetch(
+      "http://localhost:8080/bathrooms/getWheelchairAccessible"
+    );
+    if (building.ok) {
+      const build = await building.json();
+
+      const bs: number[] = [];
+      build.forEach((building) => {
+        bs.push(building.id);
+      });
+      setFilter(bs);
+      console.log(bs);
+    }
+    //if filter list contains a building , set the class of that building to highlight
+  };
+
   const onClick = (tag: string, event) => {
-    onFilter(event);
+    if (event == "Wheelchair Accessible") {
+      onFilterAccess();
+    } else {
+      onFilter(event);
+    }
+
     // if in tags list, take out
     setTags((prevTags) => {
       // using functional form of setTags so that onClick is updating the actual latest state of tags; otherwise always a step behind
@@ -197,9 +227,9 @@ export default function MapBox() {
                       key={index}
                       className={tagClass}
                       value={tag}
-                      onClick={(e) =>
-                        onClick(tag, (e.target as HTMLButtonElement).value)
-                      }
+                      onClick={(e) => {
+                        onClick(tag, (e.target as HTMLButtonElement).value);
+                      }}
                     >
                       {tag}
                     </button>

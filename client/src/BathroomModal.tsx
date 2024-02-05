@@ -122,6 +122,18 @@ export default function BathroomModal({ onClose, photoId }) {
                         <div className="field-name">Gender</div>
                         <div className="field-text">{curBathroom.gender}</div>
                       </div>
+                      <div className="info-row">
+                        <div className="field-name">Wheelchair Accessible</div>
+                        <div className="field-text">
+                          {curBathroom.wheelchairAccessible ? "yes" : "no"}
+                        </div>
+                      </div>
+                      <div className="info-row">
+                        <div className="field-name">Single Occupancy</div>
+                        <div className="field-text">
+                          {curBathroom.singleOccupancy ? "yes" : "no"}
+                        </div>
+                      </div>
                       <div className="main-img">
                         <img
                           src={idToImage[curBathroom.id]}
@@ -174,8 +186,19 @@ export default function BathroomModal({ onClose, photoId }) {
                         {curBathroom.reviews.map((review, index) => (
                           <div key={index} className="review">
                             <p className="review-text">{review}</p>
+                            <p>This is my favorite bathroom ever!</p>
                           </div>
                         ))}
+                        <p className="review">
+                          This is my favorite bathroom ever!
+                        </p>
+                        <p className="review">
+                          The paper towels in this bathroom are so weird...
+                        </p>
+                        <p className="review">I hate this one!!!</p>
+                        <p className="review">
+                          The sinks have great water pressure here.
+                        </p>
                       </div>
                     </div>
                   </>
